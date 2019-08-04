@@ -3,7 +3,7 @@ import paramiko
 import re
 from termcolor import colored
 
-info_file = open("/home/ubuntu/details.txt", "r")
+info_file = open("/etc/details.txt", "r")
 info_file_lines = info_file.readlines()
 info_file.close()
 

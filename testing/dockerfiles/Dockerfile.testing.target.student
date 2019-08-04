@@ -38,7 +38,6 @@ ADD $labdir/$lab.tar.gz /home/boris
 
 
 USER root
-#CMD $HOME/random_fwll.sh
 RUN chmod 777 /etc/rc.local
 RUN chmod 700 /home/boris/backdoor_details.txt
 CMD ["./bin/bash", "-c", "exec /sbin/init --log-target=journal 3>&1"]

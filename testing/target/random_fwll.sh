@@ -40,7 +40,7 @@ $IPTABLES -P OUTPUT  ACCEPT
 
 $IPTABLES -A INPUT -p icmp --icmp-type echo-request -j ACCEPT
 $IPTABLES -A INPUT -p tcp --dport 22 -m conntrack --ctstate NEW,ESTABLISHED,RELATED -j ACCEPT
-$IPTABLES -A INPUT -p tcp --tcp-flags ALL ACK -m recent --set --name KNOCKING --rsource -j ACCEPT
+$IPTABLES -A INPUT -p tcp --tcp-flags ALL $var1 -m recent --set --name KNOCKING --rsource -j ACCEPT
 $IPTABLES -A INPUT -p tcp -m recent --rcheck --hitcount 1 --name KNOCKING --rsource -j ACCEPT 
 $IPTABLES -A INPUT -j DROP # Drop all packets that get this far...
 

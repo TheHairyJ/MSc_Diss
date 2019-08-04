@@ -68,6 +68,7 @@ RUN echo 'alias check="python3 $HOME/check.py"' >> ~/.bashrc
 RUN chmod 777 $HOME/check.py
 RUN chmod 777 $HOME/initial.py
 RUN chmod 777 $HOME/instructions.py
+RUN chmod 777 /etc/mvit.sh
 RUN chmod 777 /etc/rc.local
 
 CMD ["/bin/bash", "-c", "exec /sbin/init --log-target=journal 3>&1"]
