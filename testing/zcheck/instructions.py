@@ -82,7 +82,7 @@ inst_file.write(" \n Welcome to (I)ndividualised (C)ybersecurity (L)abs! \n")
 inst_file.write(" \n Activity: Advanced network scanning and password cracking \n")
 
 inst_file.write(" \n In this exercise, you are tasked to identify the suspicious file contents accessible through a backdoor left by a disgruntled former employee boris.")
-inst_file.write(" \n \n The backdoor is believed to be a credentialed telnet service on an unusual port somewhere on the " + str(addr) + " host.")
+inst_file.write(" \n \n The backdoor is believed to be a credentialed telnet service on an unusual port somewhere on the 172.25.0.0/24 network.")
 
 char_intf(port,fwll)
 

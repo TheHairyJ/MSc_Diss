@@ -16,6 +16,22 @@ client = paramiko.SSHClient()
 client.set_missing_host_key_policy(paramiko.MissingHostKeyPolicy())
 client.connect(addr, 22, username='ubuntu', password='ubuntu')
 
+print('''
+   ________              __   __
+  / ____/ /_  ___  _____/ /__/ /
+ / /   / __ \/ _ \/ ___/ //_/ / 
+/ /___/ / / /  __/ /__/ ,< /_/  
+\____/_/ /_/\___/\___/_/|_(_)   
+                             ''')
+
+# Input to check for the correct port
+usr_input_addr = input("What is the IP address of the target?")
+if addr in usr_input_addr:
+	print('Successfully identified the target: ' + colored('CHECK', 'green'))
+else:
+	print('Successfully identified the target: ' + colored('CHECK', 'red'))
+
+
 # Input to check for the correct port
 usr_input = input("On which port is the telnet service located?")
 if port in usr_input:
