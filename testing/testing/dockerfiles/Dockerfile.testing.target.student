@@ -1,0 +1,43 @@
+ARG registry 
+FROM $registry/labtainer.network
+ARG lab
+ARG labdir
+ARG imagedir
+ARG user_name
+ARG apt_source
+
+#
+# Example of installing xinetd to manage inetd type system services
+# And, installation of rsyslog to cause system logging local to the
+# container.
+#
+ENV APT_SOURCE $apt_source
+RUN /usr/bin/apt-source.sh
+RUN apt-get update && apt-get install -y --no-install-recommends telnetd && apt-get install -y iptables
+
+ADD $labdir/sys_$lab.tar.gz /
+
+RUN useradd -ms /bin/bash $user_name
+RUN echo "$user_name:$user_name" | chpasswd
+RUN adduser $user_name sudo
+
+USER $user_name
+ENV HOME /home/$user_name
+ADD $labdir/$lab.tar.gz $HOME
+RUN ls $HOME
+
+USER root
+RUN useradd -ms /bin/bash boris
+RUN chmod 777 $HOME/random_pswd.sh
+RUN chmod 777 $HOME/random_fwll.sh
+
+RUN $HOME/random_pswd.sh
+RUN adduser boris sudo
+USER boris
+ADD $labdir/$lab.tar.gz /home/boris
+
+
+USER root
+RUN chmod 777 /etc/rc.local
+RUN chmod 700 /home/boris/backdoor_details.txt
+CMD ["./bin/bash", "-c", "exec /sbin/init --log-target=journal 3>&1"]
